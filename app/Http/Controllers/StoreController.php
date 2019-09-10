@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Cache;
+
 class StoreController extends Controller
 {
     public function index(Request $request)
     {
+        dd(env('APP_ENV'));
         //get the items from the API and then render them
         $equest = Request::create('http://127.0.0.1:8000/getAllItemsApi', 'GET');
         $res = app()->handle($equest);
