@@ -13,8 +13,10 @@ class StoreController extends Controller
     public function __construct()
     {
         if (env('APP_ENV') == 'Production') {
+            dd('aa');
             $this->_link = 'http://micro-e-commerce.herokuapp.com/public';
         }
+        dd('tt');
         $this->_link = 'http://127.0.0.1:8000';
     }
 
