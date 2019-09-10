@@ -25,7 +25,6 @@ class CheckoutControllerAPI extends Controller
             }
             //if credit enough then fire the event
             event(new Checkout($request->all()));
-            return response()->json(['status' => Cache::get('cart')->totalPrice]);
             return response()->json(['status' => true, 'msg' => 'done successfully']);
         } catch (\Exception $exception) {
             return response()->json(['status' => false, 'msg' => 'error happened', 'reason' => 'error']);
