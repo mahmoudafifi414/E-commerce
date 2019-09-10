@@ -51,7 +51,7 @@ class ActionController extends Controller
         ]);
         $responseMsg = json_decode($res->getBody());
         if ($responseMsg->status) {
-            return view('resultPage', ['success' => true]);
+            return view('resultPage', ['success' => true, 'link' => $this->_link]);
         }
         return view('resultPage', ['fail' => true, 'reason' => $responseMsg->reason, 'link' => $this->_link]);
     }
