@@ -22,11 +22,11 @@ class StoreController extends Controller
     {
         //get the items from the API and then render them
         try {
-            $request = Request::create($this->_link . '/getAllItemsApi', 'GET');
+            $request = Request::create('http://micro-e-commerce.herokuapp.com/public/getAllItemsApi', 'GET');
             $res = app()->handle($request);
             dd($res);
             $allItems = json_decode($res->getContent());
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return $exception;
         }
         return view('index', ['allItems' => $allItems, 'link' => $this->_link]);
