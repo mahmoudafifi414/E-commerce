@@ -32,7 +32,6 @@ class OrderAction
         $eventData = $event->data;
         //get cache data
         $cartData = Cache::get('cart');
-        dd('aa');
         Order::create(['customer_id' => 1, 'total' => $cartData->totalPrice, 'address' => $eventData['address'], 'telephone' => $eventData['telephone']]);
     }
 }
