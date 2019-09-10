@@ -13,6 +13,7 @@ class StoreController extends Controller
         $equest = Request::create('http://127.0.0.1:8000/getAllItemsApi', 'GET');
         $res = app()->handle($equest);
         $allItems = json_decode($res->getContent());
+dd($allItems);
         return view('index', ['allItems' => ($allItems)]);
     }
 
