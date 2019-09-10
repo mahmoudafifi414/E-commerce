@@ -12,13 +12,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{url('/')}}">E-COMMERCE</a>
+            <a class="navbar-brand" href="{{url('/public')}}">E-COMMERCE</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a class="nav-link btn btn-default" href="http://127.0.0.1:8000/cart">Card
+                    <a class="nav-link btn btn-default" href={{$link."/cart"}}>Card
                         <span class="badge badge-light"
                               id="card_value">
                             @if(Cache::has('cart'))
