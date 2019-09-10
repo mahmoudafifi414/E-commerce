@@ -24,6 +24,7 @@ class StoreController extends Controller
         try {
             $request = Request::create($this->_link . '/getAllItemsApi', 'GET');
             $res = app()->handle($request);
+            dd($res);
             $allItems = json_decode($res->getContent());
         }catch (\Exception $exception){
             return $exception;
