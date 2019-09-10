@@ -4,7 +4,7 @@
         <div class="col-md-12">
 
             <div class="row">
-                @if(!is_null($allItems) and count($allItems)>0)
+                @if(!is_null($allItems))
                     @foreach ($allItems as $item)
                         @foreach ($item as $i)
                             <div class="col-md-4">
