@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Customer;
 use App\Events\Checkout;
 use App\Http\Controllers\Controller;
+use App\Order;
 use Illuminate\Http\Request;
 use Cache;
 
@@ -23,11 +24,12 @@ class CheckoutControllerAPI extends Controller
             if (Cache::get('cart')->totalPrice > $userCredit) {
                 return response()->json(['status' => false, 'msg' => 'error happened', 'reason' => 'credit']);
             }
+            Order::create(['customer_id' => 1, 'total' => Cache::get('cart')->totalPrice, 'address' => $request->all()['address'], 'telephone' => $request->all()['telephone']]);
             //if credit enough then fire the event
             event(new Checkout($request->all()));
             return response()->json(['status' => true, 'msg' => 'done successfully']);
         } catch (\Exception $exception) {
-            return response()->json(['status' => false, 'msg' => 'error happened', 'reason' => 'error']);
+            return response()->json(['status' => false, 'msg' => $exception, 'reason' => 'error']);
         }
     }
 }
