@@ -45,11 +45,8 @@ class ActionController extends Controller
         $client = new GuzzleHttp\Client();
         $res = $client->request('POST', $this->_link . '/checkoutApi', [
             'form_params' => [
-                'field_name' => 'abc',
-                'other_field' => '123',
-                'nested_field' => [
-                    'nested' => 'hello'
-                ]
+                'telephone' => $request->telephone,
+                'address' => $request->address,
             ]
         ]);
         $responseMsg = json_decode($res->getBody());
