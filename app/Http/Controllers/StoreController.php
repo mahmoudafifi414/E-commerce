@@ -33,7 +33,7 @@ class StoreController extends Controller
         $equest = Request::create($this->_link . '/getCartApi', 'GET');
         $res = app()->handle($equest);
         $cartItems = json_decode($res->getContent());
-        return view('card', ['cartItems' => $cartItems]);
+        return view('card', ['cartItems' => $cartItems, 'link' => $this->_link]);
     }
 
     public function showCheckoutPage()
@@ -42,6 +42,6 @@ class StoreController extends Controller
             return redirect('/');
         }
         //show checkout page
-        return view('checkout');
+        return view('checkout', ['link' => $this->_link]);
     }
 }
