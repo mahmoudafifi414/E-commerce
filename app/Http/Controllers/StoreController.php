@@ -43,6 +43,7 @@ class StoreController extends Controller
         if (!Cache::has('cart') or (Cache::has('cart') and Cache::get('cart')->totalPrice) == 0) {
             return redirect('/');
         }
+        dd(Cache::get('cart'));
         //show checkout page
         return view('checkout', ['link' => $this->_link]);
     }
