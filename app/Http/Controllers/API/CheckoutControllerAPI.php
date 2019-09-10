@@ -13,8 +13,8 @@ class CheckoutControllerAPI extends Controller
     //make the checkout action
     public function checkout(Request $request)
     {
-        return Cache::get('cart');
         try {
+            return response()->json(['status' => Cache::get('cart')]);
             //find customer based on id let's say 1
             $userCredit = Customer::find(1)->store_credit;
 
