@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Cache;
+use GuzzleHttp;
 
 class StoreController extends Controller
 {
@@ -21,14 +22,16 @@ class StoreController extends Controller
     public function index(Request $request)
     {
         //get the items from the API and then render them
-        try {
-            $request = Request::create('http://micro-e-commerce.herokuapp.com/public/getAllItemsApi', 'GET');
-            $res = app()->handle($request);
-            dd($res);
-            $allItems = json_decode($res->getContent());
-        } catch (\Exception $exception) {
-            return $exception;
-        }
+
+        $client = new GuzzleHttp\Client();
+        $res = $client->get($this->_link . '/getAllItemsApi');
+        echo $res->getStatusCode(); // 200
+        echo $res->getBody(); //
+        exit;
+        $request = Request::create($this->_link . '/getAllItemsApi', 'GET');
+        $res = app()->handle($request);
+        dd($res);
+        $allItems = json_decode($res->getContent());
         return view('index', ['allItems' => $allItems, 'link' => $this->_link]);
     }
 
