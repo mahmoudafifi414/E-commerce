@@ -25,11 +25,7 @@ class StoreController extends Controller
 
         $client = new GuzzleHttp\Client();
         $res = $client->get($this->_link . '/getAllItemsApi');
-        dd(json_decode($res->getBody())); //
-        $request = Request::create($this->_link . '/getAllItemsApi', 'GET');
-        $res = app()->handle($request);
-        dd($res);
-        $allItems = json_decode($res->getContent());
+        $allItems = json_decode($res->getBody());
         return view('index', ['allItems' => $allItems, 'link' => $this->_link]);
     }
 
