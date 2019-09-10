@@ -42,9 +42,9 @@ class ActionController extends Controller
         if ($validator->fails()) {
             return redirect('/checkout')->withErrors($validator);
         }
-        $request = Request::create($this->_link . '/checkoutApi', 'POST', $request->all());
-        $res = app()->handle($request);
-        $responseMsg = json_decode($res->getContent());
+        $client = new GuzzleHttp\Client();
+        $res = $client->post($this->_link . '/checkoutApi', $request->all());
+        $responseMsg = json_decode($res->getBody());
         if ($responseMsg->status) {
             return view('resultPage', ['success' => true]);
         }
