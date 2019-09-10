@@ -8,7 +8,7 @@
                 <h4 class="modal-title">Modal Header</h4>
             </div>
             <div class="modal-body">
-                <form action="{{url('/updateQty')}}" method="get">
+                <form action="{{url($link.'/updateQty')}}" method="get">
                     <p>Quantity</p>
                     <input id="qtyInput" type="number" name="qty">
                     <input id="itemId" type="hidden" name="itemId">

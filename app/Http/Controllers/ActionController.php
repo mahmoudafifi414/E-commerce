@@ -41,13 +41,13 @@ class ActionController extends Controller
         if ($validator->fails()) {
             return redirect('/checkout')->withErrors($validator);
         }
-        $request = Request::create($this->_link.'/checkoutApi', 'POST', $request->all());
+        $request = Request::create($this->_link . '/checkoutApi', 'POST', $request->all());
         $res = app()->handle($request);
         $responseMsg = json_decode($res->getContent());
         if ($responseMsg->status) {
             return view('resultPage', ['success' => true]);
         }
-        return view('resultPage', ['fail' => true, 'reason' => $responseMsg->reason]);
+        return view('resultPage', ['fail' => true, 'reason' => $responseMsg->reason, 'link' => $this->_link]);
     }
 
     public function validateCheckoutVars($request)
