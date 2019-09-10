@@ -43,7 +43,7 @@ class ActionController extends Controller
             return redirect('/checkout')->withErrors($validator);
         }
         $client = new GuzzleHttp\Client();
-        $res = $client->post($this->_link . '/checkoutApi', $request->all());
+        $res = $client->post($this->_link . '/checkoutApi', ['body' => json_encode($request->all())]);
         $responseMsg = json_decode($res->getBody());
         dd($responseMsg);
         if ($responseMsg->status) {

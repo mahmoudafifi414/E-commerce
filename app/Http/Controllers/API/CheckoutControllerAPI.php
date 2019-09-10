@@ -14,6 +14,7 @@ class CheckoutControllerAPI extends Controller
     //make the checkout action
     public function checkout(Request $request)
     {
+        return response()->json(['status' => false, 'msg' => $request->all(), 'reason' => 'error']);
         try {
 
             //find customer based on id let's say 1
