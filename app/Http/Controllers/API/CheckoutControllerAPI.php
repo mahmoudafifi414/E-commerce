@@ -25,7 +25,6 @@ class CheckoutControllerAPI extends Controller
             event(new Checkout($request->all()));
             return response()->json(['status' => true, 'msg' => 'done successfully']);
         } catch (\Exception $exception) {
-            return $exception;
             return response()->json(['status' => false, 'msg' => 'error happened', 'reason' => 'error']);
         }
     }

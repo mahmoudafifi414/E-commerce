@@ -45,7 +45,6 @@ class ActionController extends Controller
         $client = new GuzzleHttp\Client();
         $res = $client->post($this->_link . '/checkoutApi', $request->all());
         $responseMsg = json_decode($res->getBody());
-        dd($responseMsg);
         if ($responseMsg->status) {
             return view('resultPage', ['success' => true]);
         }
