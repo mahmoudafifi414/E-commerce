@@ -17,7 +17,7 @@ class StoreControllerAPI extends Controller
             $items = Item::all();
             return response()->json(['items' => $items], 200);
         } catch (\Exception $exception) {
-            return response()->json(['msg' => 'unable to fetch items'], 500);
+            return response()->json(['msg' => 'unable to fetch items '.$exception], 500);
         }
     }
 
