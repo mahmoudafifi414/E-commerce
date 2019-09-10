@@ -21,9 +21,13 @@ class StoreController extends Controller
     public function index(Request $request)
     {
         //get the items from the API and then render them
-        $request = Request::create($this->_link . '/getAllItemsApi', 'GET');
-        $res = app()->handle($request);
-        $allItems = json_decode($res->getContent());
+        try {
+            $request = Request::create($this->_link . '/getAllItemsApi', 'GET');
+            $res = app()->handle($request);
+            $allItems = json_decode($res->getContent());
+        }catch (\Exception $exception){
+            return $exception;
+        }
         return view('index', ['allItems' => $allItems, 'link' => $this->_link]);
     }
 
