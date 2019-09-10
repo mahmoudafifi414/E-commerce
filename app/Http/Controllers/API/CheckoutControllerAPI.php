@@ -25,11 +25,10 @@ class CheckoutControllerAPI extends Controller
                 return response()->json(['status' => false, 'msg' => 'error happened', 'reason' => 'credit']);
             }
             //if credit enough then fire the event
-            Order::create(['customer_id' => 1, 'total' => Cache::get('cart')->totalPrice, 'address' => $request->all()['address'], 'telephone' => $request->all()['telephone']]);
             event(new Checkout($request->all()));
             return response()->json(['status' => true, 'msg' => 'done successfully']);
         } catch (\Exception $exception) {
-            return response()->json(['status' => false, 'msg' => $exception->getMessage(), 'reason' => 'error']);
+            return response()->json(['status' => false, 'msg' => 'error happened', 'reason' => 'error']);
         }
     }
 }
