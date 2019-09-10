@@ -22,7 +22,7 @@
                                     </p>
                                     <p>
                                         <a class="btn btn-primary"
-                                           href={{"http://localhost:8000/addToCart/".$i->id}} id="add_card">Add To
+                                           href={{$link."/".$i->id}} id="add_card">Add To
                                             Card</a>
                                     </p>
                                 </div>

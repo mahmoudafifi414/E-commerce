@@ -8,20 +8,29 @@ use Cache;
 
 class StoreController extends Controller
 {
+    protected $_link;
+
+    public function __construct()
+    {
+        if (env('APP_ENV') == 'Production') {
+            $this->_link = 'http://micro-e-commerce.herokuapp.com/public';
+        }
+        $this->_link = 'http://127.0.0.1:8000';
+    }
+
     public function index(Request $request)
     {
-        dd(env('APP_ENV'));
         //get the items from the API and then render them
-        $equest = Request::create('http://127.0.0.1:8000/getAllItemsApi', 'GET');
+        $equest = Request::create($this->_link . '/getAllItemsApi', 'GET');
         $res = app()->handle($equest);
         $allItems = json_decode($res->getContent());
-        return view('index', ['allItems' => ($allItems)]);
+        return view('index', ['allItems' => ($allItems), 'link' => $this->_link]);
     }
 
     public function showCart()
     {
         //get cart items from cache then render it
-        $equest = Request::create('http://127.0.0.1:8000/getCartApi', 'GET');
+        $equest = Request::create($this->_link . '/getCartApi', 'GET');
         $res = app()->handle($equest);
         $cartItems = json_decode($res->getContent());
         return view('card', ['cartItems' => $cartItems]);
