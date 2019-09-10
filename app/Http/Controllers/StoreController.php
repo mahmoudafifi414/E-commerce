@@ -22,10 +22,11 @@ class StoreController extends Controller
     {
         //get the items from the API and then render them
         $request = Request::create($this->_link . '/getAllItemsApi', 'GET');
+        dd($this->_link . '/getAllItemsApi');
         $res = app()->handle($request);
         $allItems = json_decode($res->getContent());
         dd($allItems);
-        return view('index', ['allItems' => ($allItems), 'link' => $this->_link]);
+        return view('index', ['allItems' => $allItems, 'link' => $this->_link]);
     }
 
     public function showCart()
