@@ -21,7 +21,7 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Checkout::class => [
-            //OrderAction::class,
+            OrderAction::class,
             UserCredit::class,
             CartListener::class,
             CacheChecker::class
