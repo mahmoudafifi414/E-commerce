@@ -16,7 +16,7 @@ class CheckoutControllerAPI extends Controller
         try {
             //find customer based on id let's say 1
             $userCredit = Customer::find(1)->store_credit;
-
+            return response()->json(['status' => true, 'msg' => 'done successfully']);
             //get cache credit and then compare with user credit
             if (Cache::get('cart')->totalPrice > $userCredit) {
                 return response()->json(['status' => false, 'msg' => 'error happened', 'reason' => 'credit']);
