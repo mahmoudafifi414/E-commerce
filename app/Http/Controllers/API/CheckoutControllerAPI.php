@@ -19,10 +19,11 @@ class CheckoutControllerAPI extends Controller
             $userCredit = Customer::find(1)->store_credit;
 
             //get cache credit and then compare with user credit
+            return response()->json(['status' => Cache::get('cart')->totalPrice > $userCredit]);
             if (Cache::get('cart')->totalPrice > $userCredit) {
                 return response()->json(['status' => false, 'msg' => 'error happened', 'reason' => 'credit']);
             }
-            return response()->json(['status' => Cache::get('cart')]);
+
             //if credit enough then fire the event
             event(new Checkout($request->all()));
             return response()->json(['status' => true, 'msg' => 'done successfully']);
