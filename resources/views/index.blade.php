@@ -23,7 +23,7 @@
                                         </p>
                                         <p>
                                             <a class="btn btn-primary"
-                                               href={{$link."/".$i->id}} id="add_card">Add To
+                                               href={{$link."/addToCart/".$i->id}} id="add_card">Add To
                                                 Card</a>
                                         </p>
                                     </div>

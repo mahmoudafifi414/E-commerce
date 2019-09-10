@@ -30,7 +30,7 @@
                             <td class="col-sm-1 col-md-1 text-center"><strong>${{$item->total}}</strong>
                             </td>
                             <td class="col-sm-5 col-md-5">
-                                <a class="btn btn-danger" href="{{url('/removeItem/'.$item->item->id)}}">
+                                <a class="btn btn-danger" href="{{url($link.'/removeItem/'.$item->item->id)}}">
                                     Remove
                                 </a>
                             </td>
@@ -59,12 +59,12 @@
                         <td>  </td>
                         <td>  </td>
                         <td>
-                            <a href="{{url('/')}}" type="button" class="btn btn-default">
+                            <a href="{{url($link)}}" type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
                             </a>
                         </td>
                         <td>
-                            <a href="{{url('/checkout')}}" class="btn btn-success">
+                            <a href="{{url($link.'/checkout')}}" class="btn btn-success">
                                 Checkout <span class="glyphicon glyphicon-play"></span>
                             </a>
                         </td>
@@ -73,7 +73,7 @@
                 </table>
             @else
                 <h3>Sorry, You have not any items in your cart</h3>
-                <a href="{{url('/')}}" type="button" class="btn btn-default">
+                <a href="{{url($link)}}" type="button" class="btn btn-default">
                     <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
                 </a>
             @endif

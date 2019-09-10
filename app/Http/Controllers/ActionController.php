@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
+use GuzzleHttp;
 
 class ActionController extends Controller
 {
@@ -20,17 +21,17 @@ class ActionController extends Controller
     public function addToCart($itemId)
     {
         //call addToCartApi
-        $request = Request::create($this->_link . '/addToCartApi/' . $itemId, 'GET');
-        $res = app()->handle($request);
-        $cartItems = json_decode($res->getContent());
+        $client = new GuzzleHttp\Client();
+        $res = $client->get($this->_link . '/addToCartApi/' . $itemId);
+        $cartItems = json_decode($res->getBody());
         return redirect('/');
     }
 
     public function removeItemFromCart($itemId)
     {   //call removeItemApi then redirect to cart page
-        $request = Request::create($this->_link . '/removeItemApi/' . $itemId, 'GET');
-        $res = app()->handle($request);
-        $cartItems = json_decode($res->getContent());
+        $client = new GuzzleHttp\Client();
+        $res = $client->get($this->_link . '/removeItemApi/' . $itemId);
+        $cartItems = json_decode($res->getBody());
         return redirect('/cart');
     }
 

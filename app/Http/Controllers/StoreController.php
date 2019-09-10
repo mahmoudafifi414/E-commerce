@@ -32,9 +32,9 @@ class StoreController extends Controller
     public function showCart()
     {
         //get cart items from cache then render it
-        $equest = Request::create($this->_link . '/getCartApi', 'GET');
-        $res = app()->handle($equest);
-        $cartItems = json_decode($res->getContent());
+        $client = new GuzzleHttp\Client();
+        $res = $client->get($this->_link . '/getCartApi');
+        $cartItems = json_decode($res->getBody());
         return view('card', ['cartItems' => $cartItems, 'link' => $this->_link]);
     }
 
