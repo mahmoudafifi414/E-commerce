@@ -29,7 +29,7 @@ class CheckoutControllerAPI extends Controller
             event(new Checkout($request->all()));
             return response()->json(['status' => true, 'msg' => 'done successfully']);
         } catch (\Exception $exception) {
-            return response()->json(['status' => false, 'msg' => $exception, 'reason' => 'error']);
+            return response()->json(['status' => false, 'msg' => $exception->getMessage(), 'reason' => 'error']);
         }
     }
 }
