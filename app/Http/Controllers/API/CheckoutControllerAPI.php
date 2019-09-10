@@ -14,7 +14,6 @@ class CheckoutControllerAPI extends Controller
     //make the checkout action
     public function checkout(Request $request)
     {
-        return response()->json(['status' => false, 'msg' => $request->all(), 'reason' => 'error']);
         try {
 
             //find customer based on id let's say 1
@@ -30,7 +29,7 @@ class CheckoutControllerAPI extends Controller
             event(new Checkout($request->all()));
             return response()->json(['status' => true, 'msg' => 'done successfully']);
         } catch (\Exception $exception) {
-            return response()->json(['status' => false, 'msg' => $request->all(), 'reason' => 'error']);
+            return response()->json(['status' => false, 'msg' => $exception->getMessage(), 'reason' => 'error']);
         }
     }
 }
