@@ -10,6 +10,7 @@ use Cache;
 
 class StoreControllerAPI extends Controller
 {
+
     public function getAllItemsApi()
     {
         //get all items and return it

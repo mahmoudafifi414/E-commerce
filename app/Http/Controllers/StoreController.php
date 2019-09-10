@@ -8,7 +8,7 @@ use Cache;
 
 class StoreController extends Controller
 {
-    protected $_link;
+    private $_link;
 
     public function __construct()
     {

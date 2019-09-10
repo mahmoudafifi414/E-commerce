@@ -7,10 +7,20 @@ use Validator;
 
 class ActionController extends Controller
 {
+    private $_link;
+
+    public function __construct()
+    {
+        if (env('APP_ENV') == 'Production') {
+            $this->_link = 'http://micro-e-commerce.herokuapp.com/public';
+        }
+        $this->_link = 'http://127.0.0.1:8000';
+    }
+
     public function addToCart($itemId)
     {
         //call addToCartApi
-        $request = Request::create('http://127.0.0.1:8000/addToCartApi/' . $itemId, 'GET');
+        $request = Request::create($this->_link . '/addToCartApi/' . $itemId, 'GET');
         $res = app()->handle($request);
         $cartItems = json_decode($res->getContent());
         return redirect('/');
@@ -18,7 +28,7 @@ class ActionController extends Controller
 
     public function removeItemFromCart($itemId)
     {   //call removeItemApi then redirect to cart page
-        $request = Request::create('http://127.0.0.1:8000/removeItemApi/' . $itemId, 'GET');
+        $request = Request::create($this->_link . '/removeItemApi/' . $itemId, 'GET');
         $res = app()->handle($request);
         $cartItems = json_decode($res->getContent());
         return redirect('/cart');
@@ -31,7 +41,7 @@ class ActionController extends Controller
         if ($validator->fails()) {
             return redirect('/checkout')->withErrors($validator);
         }
-        $request = Request::create('http://127.0.0.1:8000/checkoutApi', 'POST', $request->all());
+        $request = Request::create($this->_link.'/checkoutApi', 'POST', $request->all());
         $res = app()->handle($request);
         $responseMsg = json_decode($res->getContent());
         if ($responseMsg->status) {
